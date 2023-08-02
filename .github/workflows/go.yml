@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  test: ${{ matrix.os }}
+  test:
     runs-on: ${{ matrix.os }}
     env:
       HOST: localhost

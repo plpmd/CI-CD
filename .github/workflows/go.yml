@@ -9,17 +9,13 @@ on:
 jobs:
 
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: 'ubuntu-latest'
     env:
       HOST: localhost
       PORT: 5432
       USER: root
       PASSWORD: root
       DBNAME: root
-    strategy:
-      matrix:
-        go_version: ['1.18']
-        os: ['ubuntu-latest']
     steps:
     - uses: actions/checkout@v3
 
@@ -40,16 +36,18 @@ jobs:
   
   build:
     needs: test
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: ['ubuntu-latest']
+    runs-on: ['ubuntu-latest']
     steps:
     - uses: actions/checkout@v3
     - name: Build
       run: go build -v main.go
 
-
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: progama
+        path: main
+        
   docker:
     needs: build
     uses: ./.github/workflows/Docker.yml

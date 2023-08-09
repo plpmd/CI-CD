@@ -1,0 +1,14 @@
+name: Entrega Contínua
+
+on:
+ workflow_call:
+
+jobs:
+   EC2:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v2.1.1
+      with:
+        name: programa
+    - uses: actions/checkout@v3

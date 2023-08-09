@@ -35,6 +35,5 @@ jobs:
           export DBNAME=${{ secrets.DBNAME }}
           export DBPORT=${{ secrets.DBPORT }}
           export PORT=8000
-          build -v main.go
-          chmod +x main
+          chmod +x main.go
           nohup ./main > nohup.out 2> nohup.err < /dev/null &

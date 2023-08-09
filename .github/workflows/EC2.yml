@@ -18,6 +18,8 @@ jobs:
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@main
       env:
+        #apaguei o EC2
+        #regra de entrada 
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
@@ -32,6 +34,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
+          #apaguei o RDS
           export HOST=${{ secrets.DBHOST }}
           export USER=${{ secrets.DBUSER }}
           export PASSWORD=${{ secrets.DBPASSWORD }}
